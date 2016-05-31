@@ -8,7 +8,7 @@ module.exports = function(grunt){
   grunt.registerTask('default', ['newer:jade', 'watch:jade']);
   grunt.registerTask('watch1', ['newer:jade', 'watch:jade']);
   grunt.registerTask('concat1', ['concat']);
-  grunt.registerTask('jade1', ['newer:jade1']);
+  grunt.registerTask('jade1', ['newer:jade']);
 
   grunt.initConfig({
 

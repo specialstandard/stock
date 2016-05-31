@@ -1,6 +1,7 @@
 doctype html
 html(ng-app="app" ng-controller="MainController")
   head
+    title Equities Analyzer
     meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
     link(rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css")
     link(rel="stylesheet" href="./style.css")
@@ -12,4 +13,17 @@ html(ng-app="app" ng-controller="MainController")
   body(autoscroll)
     .container
       .row
-        ng-view
+      nav.navbar.navbar-inverse(ng-controller="NavController")
+        div.container-fluid
+          div.navbar-header
+            a.navbar-brand(href="#/")
+          ul.nav.navbar-nav
+            li(ng-class="{active:isActive('/')}")
+              a(href="#/") Home
+            li(ng-class="{active:isActive('/stocks')}")
+              a(href="#/stocks") Stocks
+            li(ng-class="{active:isActive('/indices')}")
+              a(href="#/indices") Indices
+            li(ng-class="{active:isActive('/currencies')}")
+              a(href="#/currencies") Currencies
+      ng-view

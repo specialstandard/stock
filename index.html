@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app" ng-controller="MainController">
   <head>
+    <title>Equities Analyzer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
@@ -11,9 +12,19 @@
   </head>
   <body autoscroll>
     <div class="container">
-      <div class="row">
-        <ng-view></ng-view>
-      </div>
+      <div class="row"></div>
+      <nav ng-controller="NavController" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header"><a href="#/" class="navbar-brand"></a></div>
+          <ul class="nav navbar-nav">
+            <li ng-class="{active:isActive('/')}"><a href="#/">Home</a></li>
+            <li ng-class="{active:isActive('/stocks')}"><a href="#/stocks">Stocks</a></li>
+            <li ng-class="{active:isActive('/indices')}"><a href="#/indices">Indices</a></li>
+            <li ng-class="{active:isActive('/currencies')}"><a href="#/currencies">Currencies</a></li>
+          </ul>
+        </div>
+      </nav>
+      <ng-view></ng-view>
     </div>
   </body>
 </html>

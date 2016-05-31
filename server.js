@@ -15,7 +15,7 @@ var UserSchema = new mongoose.Schema({
   //comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 })
 var User = mongoose.model('User', UserSchema)
-mongoose.connect('mongodb://52.40.114.1/abc')
+mongoose.connect('mongodb://52.40.114.1/stock')
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -65,4 +65,4 @@ app.post('/api/delete', function(req, res, next) {
 
 app.use(logger('dev'));
 app.use('/', express.static(__dirname))
-app.listen(3001, function() { console.log('listening')})
+app.listen(4000, function() { console.log('listening')})
