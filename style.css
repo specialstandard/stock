@@ -1,0 +1,19 @@
+
+@media only screen and (max-width: 480px){
+  .container{
+    margin-bottom:10px;
+  }
+  .btn-response{
+    width:100%;
+    height:100px;
+    margin-top:10px;
+  }
+  .parent{
+    height:100%;
+  }
+  .child{
+    position: absolute;
+    bottom: 0px;
+    width:100%;
+  }
+}

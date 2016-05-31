@@ -1,0 +1,27 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "cheerio": "^0.20.0",
+    "express": "^4.13.4",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-newer": "*",
+    "mongoose": "^4.4.19",
+    "morgan": "^1.7.0",
+    "request": "^2.72.0"
+  }
+}

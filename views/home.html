@@ -1,0 +1,7 @@
+
+<div class="container">
+  <h2>movies</h2>
+  <div ng-repeat="item in movieList track by $index" class="list"> <a href="https://thepiratebay.org/{{item.attribs.href}}" target="_blank">
+      <p>{{item.children[0].data}}</p></a></div>
+  <button ng-click="onClickNext()" class="btn btn-block btn-info btn-lg">Next</button>
+</div>
