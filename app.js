@@ -45,12 +45,35 @@ angular.module('app', ['ngRoute'])
   }])
 
   .controller('StocksController', ['$scope', '$http', function($scope, $http){
-    var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22YHOO%22%2C%22AAPL%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback='
+
+    var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22FB%22%2C%22NFLX%22%2C%22TWTR%22%2C%22IBM%22%2C%22YHOO%22%2C%22AAPL%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback='
+    $scope.singleResult = null
+
     $http.get(url)
       .then(function(res) {
         console.log(res)
-        $scope.results = res.data.query.results.quote
+        $scope.groupResults = res.data.query.results.quote
     })
+
+    $scope.$watch('search', function (newValue){
+      $http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22'+ newValue +'%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=')
+        .then(function(res) {
+          console.log(res)
+
+          if( res.data.query.results == null ){
+            $scope.singleResultOutput = null
+          } else if( res.data.query.results.quote.Ask ==  null ){
+            $scope.singleResultOutput = null
+          } else {
+            $scope.singleResultOutput = res.data.query.results.quote
+          }
+
+          //$scope.singleResult = res.data.query.results.quote
+          //$scope.singleResultOutput = $scope.singleResult.Ask != null ? $scope.singleResult : null
+
+      })
+    })
+
 
     $scope.deleteItem = function(item){
       var obj = {
