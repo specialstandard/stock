@@ -94,29 +94,14 @@ angular.module('app', ['ngRoute'])
     }
   }])
   .controller('IndicesController', ['$scope', '$http', function($scope, $http){
-    $http.get("api/posts")
+    var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22DJI%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback='
+    $scope.singleResult = null
+
+    $http.get(url)
       .then(function(res) {
         console.log(res)
-        $scope.results = res.data
+        $scope.groupIndexResults = res.data.query.results.quote
     })
-
-    $scope.deleteItem = function(item){
-      var obj = {
-        _id: item._id
-      }
-      $http.post("api/delete", JSON.stringify(obj))
-        .then(function(res) {
-          console.log(obj)
-
-          console.log(res.data)
-      })
-      //Then get updated data
-      $http.get("api/posts")
-        .then(function(res) {
-          console.log(res)
-          $scope.results = res.data
-      })
-    }
   }])
   .controller('CurrenciesController', ['$scope', '$http', function($scope, $http){
     $http.get("api/posts")

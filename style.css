@@ -1,4 +1,6 @@
-
+.navbar-brand img{
+  width:30px;
+}
 @media only screen and (max-width: 480px){
   .container{
     margin-bottom:10px;
