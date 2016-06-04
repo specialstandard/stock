@@ -20,7 +20,8 @@
   .panel.panel-default.searchResult(ng-if="singleTwitterResultOutput")
     .panel-heading Twitter Buzz
     .panel-body
-      p(ng-repeat="item in singleTwitterResultOutput") {{item.text}}
+      p(ng-repeat="item in singleTwitterResultOutput") 
+        a(href="https://twitter.com/{{item.user.screen_name}}/status/{{item.id_str}}" target="_blank"){{item.text}}
       
   .panel.panel-default.searchResult.groupResults 
     .panel-heading Popular Stocks

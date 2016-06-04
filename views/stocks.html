@@ -23,7 +23,7 @@
   <div ng-if="singleTwitterResultOutput" class="panel panel-default searchResult">
     <div class="panel-heading">Twitter Buzz</div>
     <div class="panel-body">
-      <p ng-repeat="item in singleTwitterResultOutput">{{item.text}}</p>
+      <p ng-repeat="item in singleTwitterResultOutput"> <a href="https://twitter.com/{{item.user.screen_name}}/status/{{item.id_str}}" target="_blank">{{item.text}}</a></p>
     </div>
   </div>
   <div class="panel panel-default searchResult groupResults"> 
