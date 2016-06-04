@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="./node_modules/angular/angular.js"></script>
     <script src="./node_modules/angular-route/angular-route.js"></script>
     <script src="./app.js"></script>
@@ -13,17 +14,21 @@
   <body autoscroll>
     <div class="container">
       <div class="row"></div>
-      <nav ng-controller="NavController" class="navbar navbar-default">
+      <div ng-controller="NavController" class="navbar navbar-fixed-top navbar-default">
         <div class="container-fluid">
-          <div class="navbar-header"><a href="#/" class="navbar-brand"><img src="logo.png"></a></div>
-          <ul class="nav navbar-nav">
-            <li ng-class="{active:isActive('/')}"><a href="#/">Home</a></li>
-            <li ng-class="{active:isActive('/stocks')}"><a href="#/stocks">Stocks</a></li>
-            <li ng-class="{active:isActive('/indices')}"><a href="#/indices">Indices</a></li>
-            <li ng-class="{active:isActive('/currencies')}"><a href="#/currencies">Currencies</a></li>
-          </ul>
+          <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target="#myNavbar" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#/" class="navbar-brand"><img src="logo.png"></a>
+          </div>
+          <div id="myNavbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li ng-class="{active:isActive('/')}"><a href="#/" data-toggle="collapse" data-target="#myNavbar">Home</a></li>
+              <li ng-class="{active:isActive('/stocks')}"><a href="#/stocks" data-toggle="collapse" data-target="#myNavbar">Stocks</a></li>
+              <li ng-class="{active:isActive('/indices')}"><a href="#/indices" data-toggle="collapse" data-target="#myNavbar">Indices</a></li>
+              <li ng-class="{active:isActive('/currencies')}"><a href="#/currencies" data-toggle="collapse" data-target="#myNavbar">Currencies</a></li>
+            </ul>
+          </div>
         </div>
-      </nav>
+      </div>
       <ng-view></ng-view>
     </div>
   </body>

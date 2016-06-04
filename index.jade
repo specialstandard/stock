@@ -6,6 +6,7 @@ html(ng-app="app" ng-controller="MainController")
     link(rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css")
     link(rel="stylesheet" href="./style.css")
     script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
     script(src="./node_modules/angular/angular.js")
     script(src="./node_modules/angular-route/angular-route.js")
     script(src="./app.js")
@@ -13,18 +14,24 @@ html(ng-app="app" ng-controller="MainController")
   body(autoscroll)
     .container
       .row
-      nav.navbar.navbar-default(ng-controller="NavController")
-        div.container-fluid
-          div.navbar-header
+      
+      .navbar.navbar-fixed-top.navbar-default(ng-controller="NavController")
+        .container-fluid
+          .navbar-header
+            button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar")
+              span(class="icon-bar")
+              span(class="icon-bar")
+              span(class="icon-bar")
             a.navbar-brand(href="#/")
               img(src="logo.png")
-          ul.nav.navbar-nav
-            li(ng-class="{active:isActive('/')}")
-              a(href="#/") Home
-            li(ng-class="{active:isActive('/stocks')}")
-              a(href="#/stocks") Stocks
-            li(ng-class="{active:isActive('/indices')}")
-              a(href="#/indices") Indices
-            li(ng-class="{active:isActive('/currencies')}")
-              a(href="#/currencies") Currencies
+          .collapse.navbar-collapse(id="myNavbar")
+            ul.nav.navbar-nav
+              li(ng-class="{active:isActive('/')}")
+                a(href="#/" data-toggle="collapse" data-target="#myNavbar") Home
+              li(ng-class="{active:isActive('/stocks')}")
+                a(href="#/stocks" data-toggle="collapse" data-target="#myNavbar") Stocks
+              li(ng-class="{active:isActive('/indices')}")
+                a(href="#/indices" data-toggle="collapse" data-target="#myNavbar") Indices
+              li(ng-class="{active:isActive('/currencies')}")
+                a(href="#/currencies" data-toggle="collapse" data-target="#myNavbar") Currencies
       ng-view

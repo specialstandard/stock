@@ -1,4 +1,48 @@
 .container 
   h2 Currencies Analysis
-  .results(ng-repeat="item in results") Name: {{item.name}} Title: {{item.title}}
-    button(ng-click="deleteItem(item)") Delete
+  
+  .panel.panel-default.panel-primary
+    .panel-heading Please select your currency charts
+    .panel-body
+      label AUD/USD
+        input(type="checkbox" ng-model="audusd")
+      label AUD/EUR
+        input(type="checkbox" ng-model="audeur")
+      label AUD/JPY
+        input(type="checkbox" ng-model="audjpy")
+      label AUD/NZD
+        input(type="checkbox" ng-model="audnzd")
+      label EUR/USD
+        input(type="checkbox" ng-model="eurusd")
+      label GBP/USD
+        input(type="checkbox" ng-model="gbpusd")
+    
+  .panel.panel-default.searchResult.panel-info(ng-if="audusd")
+    .panel-heading AUD/USD
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=AUDUSD%3dX&lang=en-AU&region=AU&width=280&height=180")
+
+  .panel.panel-default.searchResult.panel-info(ng-if="audeur")
+    .panel-heading AUD/EUR
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=AUDEUR%3dX&lang=en-AU&region=AU&width=280&height=180")
+          
+  .panel.panel-default.searchResult.panel-info(ng-if="audjpy")
+    .panel-heading AUD/JPY
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=AUDJPY%3dX&lang=en-AU&region=AU&width=280&height=180")
+      
+  .panel.panel-default.searchResult.panel-info(ng-if="audnzd")
+    .panel-heading AUD/NZD
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=AUDNZD%3dX&lang=en-AU&region=AU&width=280&height=180")
+
+  .panel.panel-default.searchResult.panel-info(ng-if="eurusd")
+    .panel-heading EUR/USD
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=EURUSD%3dX&lang=en-AU&region=AU&width=280&height=180")
+          
+  .panel.panel-default.searchResult(ng-if="gbpusd")
+    .panel-heading GBP/USD
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=GBPUSD%3dX&lang=en-AU&region=AU&width=280&height=180")

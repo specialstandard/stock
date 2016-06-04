@@ -1,7 +1,51 @@
 
 <div class="container"> 
   <h2>Currencies Analysis</h2>
-  <div ng-repeat="item in results" class="results">Name: {{item.name}} Title: {{item.title}}
-    <button ng-click="deleteItem(item)">Delete</button>
+  <div class="panel panel-default panel-primary">
+    <div class="panel-heading">Please select your currency charts</div>
+    <div class="panel-body">
+      <label>AUD/USD
+        <input type="checkbox" ng-model="audusd"/>
+      </label>
+      <label>AUD/EUR
+        <input type="checkbox" ng-model="audeur"/>
+      </label>
+      <label>AUD/JPY
+        <input type="checkbox" ng-model="audjpy"/>
+      </label>
+      <label>AUD/NZD
+        <input type="checkbox" ng-model="audnzd"/>
+      </label>
+      <label>EUR/USD
+        <input type="checkbox" ng-model="eurusd"/>
+      </label>
+      <label>GBP/USD
+        <input type="checkbox" ng-model="gbpusd"/>
+      </label>
+    </div>
+  </div>
+  <div ng-if="audusd" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">AUD/USD</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=AUDUSD%3dX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="audeur" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">AUD/EUR</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=AUDEUR%3dX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="audjpy" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">AUD/JPY</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=AUDJPY%3dX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="audnzd" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">AUD/NZD</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=AUDNZD%3dX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="eurusd" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">EUR/USD</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=EURUSD%3dX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="gbpusd" class="panel panel-default searchResult">
+    <div class="panel-heading">GBP/USD</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=GBPUSD%3dX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
   </div>
 </div>

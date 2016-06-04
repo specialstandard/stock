@@ -1,3 +1,35 @@
 .container 
   h2 Indices Analysis
-  .results(ng-repeat="item in groupIndexResults") Name: {{item.name}} Title: {{item.title}}
+  .panel.panel-default.panel-primary
+    .panel-heading Please select your index charts
+    .panel-body
+      label Dow Jones
+        input(type="checkbox" ng-model="dji")
+      label NASDAQ-100
+        input(type="checkbox" ng-model="nasdaq100")
+      label S&P 500
+        input(type="checkbox" ng-model="sp500")
+      label Nikkei 225
+        input(type="checkbox" ng-model="nikkei")
+    
+  .panel.panel-default.searchResult.panel-info(ng-if="dji")
+    .panel-heading Dow Jones Industrial Average
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=%5eDJI&lang=en-AU&region=AU&width=280&height=180")
+  
+  .panel.panel-default.searchResult.panel-info(ng-if="nasdaq100")
+    .panel-heading NASDAQ-100
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=%5eNDX&lang=en-AU&region=AU&width=280&height=180")
+          
+  .panel.panel-default.searchResult.panel-info(ng-if="sp500")
+    .panel-heading S&P 500
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=%5eGSPC&lang=en-AU&region=AU&width=280&height=180")
+      
+  .panel.panel-default.searchResult.panel-info(ng-if="nikkei")
+    .panel-heading Nikkei 225
+    .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s=%5eN225&lang=en-AU&region=AU&width=280&height=180")
+  
+  

@@ -1,5 +1,37 @@
 
 <div class="container"> 
   <h2>Indices Analysis</h2>
-  <div ng-repeat="item in groupIndexResults" class="results">Name: {{item.name}} Title: {{item.title}}</div>
+  <div class="panel panel-default panel-primary">
+    <div class="panel-heading">Please select your index charts</div>
+    <div class="panel-body">
+      <label>Dow Jones
+        <input type="checkbox" ng-model="dji"/>
+      </label>
+      <label>NASDAQ-100
+        <input type="checkbox" ng-model="nasdaq100"/>
+      </label>
+      <label>S&P 500
+        <input type="checkbox" ng-model="sp500"/>
+      </label>
+      <label>Nikkei 225
+        <input type="checkbox" ng-model="nikkei"/>
+      </label>
+    </div>
+  </div>
+  <div ng-if="dji" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">Dow Jones Industrial Average</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=%5eDJI&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="nasdaq100" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">NASDAQ-100</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=%5eNDX&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="sp500" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">S&P 500</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=%5eGSPC&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
+  <div ng-if="nikkei" class="panel panel-default searchResult panel-info">
+    <div class="panel-heading">Nikkei 225</div>
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s=%5eN225&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/></div>
+  </div>
 </div>

@@ -7,7 +7,7 @@
       <input ng-model="search" type="text" ng-model-options="{debounce:1000}" class="form-control"/>
     </div>
   </form>
-  <div ng-if="singleResultOutput" class="panel panel-default searchResult">
+  <div ng-if="singleResultOutput" class="panel panel-default searchResult panel-success">
     <div class="panel-heading">Stock Data</div>
     <div class="panel-body">
       <p>Symbol: {{singleResultOutput.symbol | uppercase}} </p>
@@ -20,13 +20,13 @@
       <p>Market Cap: {{singleResultOutput.MarketCapitalization | uppercase}} </p>
     </div>
   </div>
-  <div ng-if="singleTwitterResultOutput" class="panel panel-default searchResult">
+  <div ng-if="singleTwitterResultOutput" class="panel panel-default searchResult panel-warning">
     <div class="panel-heading">Twitter Buzz</div>
     <div class="panel-body">
       <p ng-repeat="item in singleTwitterResultOutput"> <a href="https://twitter.com/{{item.user.screen_name}}/status/{{item.id_str}}" target="_blank">{{item.text}}</a></p>
     </div>
   </div>
-  <div class="panel panel-default searchResult groupResults"> 
+  <div class="panel panel-default searchResult groupResults panel-info">
     <div class="panel-heading">Popular Stocks</div>
     <div class="panel-body">
       <p ng-repeat="item in groupResults">Symbol: <a ng-click="onClickPopularStock(item.symbol)">{{item.Symbol | uppercase}} </a>Last Trade: {{item.LastTradePriceOnly}}</p>

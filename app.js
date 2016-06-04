@@ -97,6 +97,8 @@ angular.module('app', ['ngRoute'])
 
   }])
   .controller('IndicesController', ['$scope', '$http', function($scope, $http){
+    $scope.dji = true
+
     var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22DJI%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback='
     $scope.singleResult = null
 
@@ -107,6 +109,8 @@ angular.module('app', ['ngRoute'])
     })
   }])
   .controller('CurrenciesController', ['$scope', '$http', function($scope, $http){
+    $scope.audusd = true
+
     $http.get("api/posts")
       .then(function(res) {
         console.log(res)

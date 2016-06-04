@@ -5,7 +5,7 @@
       label Stock: 
       input.form-control(ng-model="search" type="text" ng-model-options="{debounce:1000}")
     
-  .panel.panel-default.searchResult(ng-if="singleResultOutput")
+  .panel.panel-default.searchResult.panel-success(ng-if="singleResultOutput")
     .panel-heading Stock Data
     .panel-body
       p Symbol: {{singleResultOutput.symbol | uppercase}} 
@@ -17,13 +17,13 @@
       p PE Ratio: {{singleResultOutput.PERatio | uppercase}} 
       p Market Cap: {{singleResultOutput.MarketCapitalization | uppercase}} 
       
-  .panel.panel-default.searchResult(ng-if="singleTwitterResultOutput")
+  .panel.panel-default.searchResult.panel-warning(ng-if="singleTwitterResultOutput")
     .panel-heading Twitter Buzz
     .panel-body
       p(ng-repeat="item in singleTwitterResultOutput") 
         a(href="https://twitter.com/{{item.user.screen_name}}/status/{{item.id_str}}" target="_blank"){{item.text}}
       
-  .panel.panel-default.searchResult.groupResults 
+  .panel.panel-default.searchResult.groupResults.panel-info
     .panel-heading Popular Stocks
     .panel-body
       p(ng-repeat="item in groupResults") Symbol: 
