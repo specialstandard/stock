@@ -1,9 +1,11 @@
 body {
-  padding-top: 70px;
+  padding-top: 45px;
 }
 
 .navbar-brand img{
   width:30px;
+  margin-right: 4px;
+  float: left;
 }
 .form-control{
   width:300px;
