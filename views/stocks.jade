@@ -5,9 +5,27 @@
       label Stock: 
       input.form-control(ng-model="search" type="text" ng-model-options="{debounce:1000}")
     
-  .searchResult
-      div(ng-repeat="(key, value) in singleResultOutput") {{key}}: {{value}} 
-
-  .groupResults(ng-repeat="item in groupResults") 
-    p Symbol: {{item.Symbol}} Last Trade: {{item.LastTradePriceOnly}}
-    //button(ng-click="deleteItem(item)") Delete
+  .panel.panel-default.searchResult(ng-if="singleResultOutput")
+    .panel-heading Stock Data
+    .panel-body
+      p Symbol: {{singleResultOutput.symbol | uppercase}} 
+      p Last Trade: {{singleResultOutput.LastTradePriceOnly | uppercase}} 
+      p Percent Change: {{singleResultOutput.PercentChange | uppercase}} 
+      p Volume: {{singleResultOutput.Volume | uppercase}} 
+      p Day's Range: {{singleResultOutput.DaysRange}} 
+      p Year Range: {{singleResultOutput.YearRange | uppercase}} 
+      p PE Ratio: {{singleResultOutput.PERatio | uppercase}} 
+      p Market Cap: {{singleResultOutput.MarketCapitalization | uppercase}} 
+      
+  .panel.panel-default.searchResult(ng-if="singleTwitterResultOutput")
+    .panel-heading Twitter Buzz
+    .panel-body
+      p(ng-repeat="item in singleTwitterResultOutput") {{item.text}}
+      
+  .panel.panel-default.searchResult.groupResults 
+    .panel-heading Popular Stocks
+    .panel-body
+      p(ng-repeat="item in groupResults") Symbol: 
+        a(ng-click="onClickPopularStock(item.symbol)") {{item.Symbol | uppercase}} 
+        | Last Trade: {{item.LastTradePriceOnly}}
+      //button(ng-click="deleteItem(item)") Delete

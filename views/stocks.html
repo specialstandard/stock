@@ -7,11 +7,30 @@
       <input ng-model="search" type="text" ng-model-options="{debounce:1000}" class="form-control"/>
     </div>
   </form>
-  <div class="searchResult">
-    <div ng-repeat="(key, value) in singleResultOutput">{{key}}: {{value}} </div>
+  <div ng-if="singleResultOutput" class="panel panel-default searchResult">
+    <div class="panel-heading">Stock Data</div>
+    <div class="panel-body">
+      <p>Symbol: {{singleResultOutput.symbol | uppercase}} </p>
+      <p>Last Trade: {{singleResultOutput.LastTradePriceOnly | uppercase}} </p>
+      <p>Percent Change: {{singleResultOutput.PercentChange | uppercase}} </p>
+      <p>Volume: {{singleResultOutput.Volume | uppercase}} </p>
+      <p>Day's Range: {{singleResultOutput.DaysRange}} </p>
+      <p>Year Range: {{singleResultOutput.YearRange | uppercase}} </p>
+      <p>PE Ratio: {{singleResultOutput.PERatio | uppercase}} </p>
+      <p>Market Cap: {{singleResultOutput.MarketCapitalization | uppercase}} </p>
+    </div>
   </div>
-  <div ng-repeat="item in groupResults" class="groupResults"> 
-    <p>Symbol: {{item.Symbol}} Last Trade: {{item.LastTradePriceOnly}}</p>
-    <!--button(ng-click="deleteItem(item)") Delete-->
+  <div ng-if="singleTwitterResultOutput" class="panel panel-default searchResult">
+    <div class="panel-heading">Twitter Buzz</div>
+    <div class="panel-body">
+      <p ng-repeat="item in singleTwitterResultOutput">{{item.text}}</p>
+    </div>
+  </div>
+  <div class="panel panel-default searchResult groupResults"> 
+    <div class="panel-heading">Popular Stocks</div>
+    <div class="panel-body">
+      <p ng-repeat="item in groupResults">Symbol: <a ng-click="onClickPopularStock(item.symbol)">{{item.Symbol | uppercase}} </a>Last Trade: {{item.LastTradePriceOnly}}</p>
+      <!--button(ng-click="deleteItem(item)") Delete-->
+    </div>
   </div>
 </div>

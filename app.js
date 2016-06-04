@@ -46,7 +46,7 @@ angular.module('app', ['ngRoute'])
 
   .controller('StocksController', ['$scope', '$http', 'APIService', function($scope, $http, APIService){
 
-    APIService.stocks('fb', 'goog').then(function(res){
+    APIService.stocks('fb', 'goog', 'nflx', 'ibm', 'twtr', 'msft', 'aapl', 'intc', 'yhoo', 'nvda', 'qqq', 'aal', 'csco').then(function(res){
       $scope.groupResults = res
     })
     console.log("group: ", $scope.groupResults)
@@ -57,12 +57,20 @@ angular.module('app', ['ngRoute'])
           console.log(res)
           if( res.data.query.results == null ){
             $scope.singleResultOutput = null
+            $scope.singleTwitterResultOutput = null
           } else if( res.data.query.results.quote.Ask ==  null ){
             $scope.singleResultOutput = null
+            $scope.singleTwitterResultOutput = null
           } else {
             $scope.singleResultOutput = res.data.query.results.quote
+            APIService.twitterStock(newValue)
+              .then(function(res) {
+                console.log(res)
+                $scope.singleTwitterResultOutput = res.data.statuses
+              })
           }
         })
+
     })
 
 
@@ -83,6 +91,10 @@ angular.module('app', ['ngRoute'])
           $scope.results = res.data
       })
     }
+    $scope.onClickPopularStock = function(item){
+      $scope.search = item
+    }
+
   }])
   .controller('IndicesController', ['$scope', '$http', function($scope, $http){
     var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22DJI%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback='
@@ -168,5 +180,14 @@ angular.module('app', ['ngRoute'])
             return res.data.query.results.quote
         })*/
     }
+
+    o.twitterStock = function(stock){
+
+      var obj = {
+        query: stock
+      }
+      return $http.post('/api/twitter/stock', JSON.stringify(obj))
+      }
+
     return o
   }])

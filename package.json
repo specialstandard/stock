@@ -22,6 +22,7 @@
     "grunt-newer": "*",
     "mongoose": "^4.4.19",
     "morgan": "^1.7.0",
+    "oauth": "^0.9.14",
     "request": "^2.72.0"
   }
 }

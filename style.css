@@ -2,7 +2,12 @@
   width:30px;
 }
 .form-control{
-  width:200px;
+  width:300px;
+}
+.searchResult{
+  margin: 4px;
+  width: 300px;
+  float: left
 }
 @media only screen and (max-width: 480px){
   .container{
@@ -22,6 +27,6 @@
     width:100%;
   }
   .form-control{
-    width:initial;
+    width:100%;
   }
 }
