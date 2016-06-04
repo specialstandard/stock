@@ -9,7 +9,7 @@
   </form>
   <div ng-if="singleResultOutput" class="panel panel-default searchResult panel-success">
     <div class="panel-heading">Stock Data</div>
-    <div class="panel-body">
+    <div class="panel-body"><img src="https://chart.finance.yahoo.com/t?s={{search}}&amp;lang=en-AU&amp;region=AU&amp;width=280&amp;height=180"/>
       <p>Symbol: {{singleResultOutput.symbol | uppercase}} </p>
       <p>Last Trade: {{singleResultOutput.LastTradePriceOnly | uppercase}} </p>
       <p>Percent Change: {{singleResultOutput.PercentChange | uppercase}} </p>

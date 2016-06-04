@@ -8,6 +8,7 @@
   .panel.panel-default.searchResult.panel-success(ng-if="singleResultOutput")
     .panel-heading Stock Data
     .panel-body
+      img(src="https://chart.finance.yahoo.com/t?s={{search}}&lang=en-AU&region=AU&width=280&height=180")
       p Symbol: {{singleResultOutput.symbol | uppercase}} 
       p Last Trade: {{singleResultOutput.LastTradePriceOnly | uppercase}} 
       p Percent Change: {{singleResultOutput.PercentChange | uppercase}} 
