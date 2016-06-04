@@ -186,7 +186,7 @@ angular.module('app', ['ngRoute'])
       var obj = {
         query: stock
       }
-      return $http.post('/api/twitter/stock', JSON.stringify(obj))
+      return $http.post('api/twitter/stock', JSON.stringify(obj))
       }
 
     return o
