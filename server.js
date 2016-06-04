@@ -26,7 +26,7 @@ var movieList = []
 
 app.post('/api/twitter/stock', function(req, res, next){
   var query = req.body.query
-
+  console.log('twitter api')
   var oauth = new OAuth.OAuth(
         'https://api.twitter.com/oauth/request_token',
         'https://api.twitter.com/oauth/access_token',
