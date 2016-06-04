@@ -1,11 +1,13 @@
 .container 
   h2 Stocks Analysis
-  label Stock: 
-  div
-    input.form-control(ng-model="search" type="text" ng-model-options="{debounce:1000}")
+  form.form-inline
+    .form-group
+      label Stock: 
+      input.form-control(ng-model="search" type="text" ng-model-options="{debounce:1000}")
+    
   .searchResult
       div(ng-repeat="(key, value) in singleResultOutput") {{key}}: {{value}} 
 
-  .results(ng-repeat="item in groupResults") 
+  .groupResults(ng-repeat="item in groupResults") 
     p Symbol: {{item.Symbol}} Last Trade: {{item.LastTradePriceOnly}}
     //button(ng-click="deleteItem(item)") Delete

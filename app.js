@@ -44,22 +44,17 @@ angular.module('app', ['ngRoute'])
     }
   }])
 
-  .controller('StocksController', ['$scope', '$http', function($scope, $http){
+  .controller('StocksController', ['$scope', '$http', 'APIService', function($scope, $http, APIService){
 
-    var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22FB%22%2C%22NFLX%22%2C%22TWTR%22%2C%22IBM%22%2C%22YHOO%22%2C%22AAPL%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback='
-    $scope.singleResult = null
-
-    $http.get(url)
-      .then(function(res) {
-        console.log(res)
-        $scope.groupResults = res.data.query.results.quote
+    APIService.stocks('fb', 'goog').then(function(res){
+      $scope.groupResults = res
     })
+    console.log("group: ", $scope.groupResults)
 
     $scope.$watch('search', function (newValue){
-      $http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22'+ newValue +'%22)%0A%09%09&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=')
+      APIService.stock(newValue)
         .then(function(res) {
           console.log(res)
-
           if( res.data.query.results == null ){
             $scope.singleResultOutput = null
           } else if( res.data.query.results.quote.Ask ==  null ){
@@ -67,11 +62,7 @@ angular.module('app', ['ngRoute'])
           } else {
             $scope.singleResultOutput = res.data.query.results.quote
           }
-
-          //$scope.singleResult = res.data.query.results.quote
-          //$scope.singleResultOutput = $scope.singleResult.Ask != null ? $scope.singleResult : null
-
-      })
+        })
     })
 
 
@@ -133,4 +124,49 @@ angular.module('app', ['ngRoute'])
       return $location.path() == path
     }
 
+  }])
+  .factory('APIService', ['$http', function($http){
+    var o = {}
+    var quote = null
+    o.stocks = function(stock){
+
+      var args = Array.from(arguments)
+
+      var stockList =''
+      args.map(function(item, i){
+        if( i==args.length-1 ){
+          stockList = stockList + '"'+item+'"'
+        }else{
+          stockList = stockList + '"'+item+'",'
+        }
+      })
+      var query = 'select * from yahoo.finance.quotes where symbol in (' + stockList
+
+      query = window.encodeURIComponent(query)
+
+      var queryTail = ')&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys&callback='
+
+      var url = 'https://query.yahooapis.com/v1/public/yql?q=' + query + queryTail
+
+      return $http.get(url)
+        .then(function(res) {
+          console.log('stocks: ', res)
+          return res.data.query.results.quote
+      })
+    }
+
+    o.stock = function(stock){
+        var query = 'select * from yahoo.finance.quotes where symbol in ("' + stock + '")&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys&callback='
+
+        query = window.encodeURI(query)
+
+        var url = 'https://query.yahooapis.com/v1/public/yql?q=' + query
+
+        return $http.get(url)
+          /*.then(function(res) {
+            console.log(res)
+            return res.data.query.results.quote
+        })*/
+    }
+    return o
   }])

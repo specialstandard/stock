@@ -1,14 +1,16 @@
 
 <div class="container"> 
   <h2>Stocks Analysis</h2>
-  <label>Stock: </label>
-  <div>
-    <input ng-model="search" type="text" ng-model-options="{debounce:1000}" class="form-control"/>
-  </div>
+  <form class="form-inline">
+    <div class="form-group">
+      <label>Stock: </label>
+      <input ng-model="search" type="text" ng-model-options="{debounce:1000}" class="form-control"/>
+    </div>
+  </form>
   <div class="searchResult">
     <div ng-repeat="(key, value) in singleResultOutput">{{key}}: {{value}} </div>
   </div>
-  <div ng-repeat="item in groupResults" class="results"> 
+  <div ng-repeat="item in groupResults" class="groupResults"> 
     <p>Symbol: {{item.Symbol}} Last Trade: {{item.LastTradePriceOnly}}</p>
     <!--button(ng-click="deleteItem(item)") Delete-->
   </div>
