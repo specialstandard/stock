@@ -51,30 +51,6 @@ app.post('/api/twitter/stock', function(req, res, next){
       });
 })
 
-app.post('/api/movies', function(req, res, next) {
-  console.log(req.body.page)
-  var page = req.body.page || 0
-  var movieUrl = 'https://thepiratebay.org/browse/201/' + page + '/7/0'
-
-  request(movieUrl, function(err, response, html){
-    if(!err){
-      //console.log(html)
-      var $ = cheerio.load(html)
-      var list = $('.detLink')
-
-      movieList = JSON.stringify(list.toArray(), function (k, v) {
-        if (k === "prev" || k === "next" || k === "parent") return undefined;
-        return v;
-      })
-      var objResponse = {page: +page + 1, movieList: JSON.parse(movieList)}
-      console.log(objResponse)
-      res.send(objResponse)
-    }
-  })
-
-
-})
-
 app.post('/api/post', function(req, res, next) {
   console.log(req.body)
   var thisPost = new User( req.body)
